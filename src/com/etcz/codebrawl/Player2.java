@@ -9,7 +9,6 @@ public class Player2 extends Player{
 		if(!visible.isEmpty()){
 			Main.Troop t = visible.get(0);
 			troop.shoot(t);
-			System.out.println("Shoot command");
 		} else{
 			troop.walk(1, 0);
 		}

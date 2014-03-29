@@ -64,7 +64,7 @@ public class Main extends JPanel{
                 window.validate();
                 window.repaint();
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(150);
                 } catch(InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }
@@ -88,32 +88,27 @@ public class Main extends JPanel{
             	gt.troop.lastTarget = null;
                     switch(gt.act){
                     case walk:
-                    	
-                            double finalX = gt.troop.x + 5*gt.x;
-                            double finalY = gt.troop.y + 5*gt.y;
+                    	Troop troop = gt.troop;
+                            double finalX = troop.x + 3*gt.x;
+                            double finalY = troop.y + 3*gt.y;
                             //prevent bumping into edge of screen
-                            if(finalX < 0)
-                                    finalX = 0;
-                            else if(finalX > environment.getWidth())
-                                    finalX = environment.getWidth()-Troop.WIDTH;
-                            if(finalY < 0)
-                                    finalY = 0;
-                            else if(finalY > environment.getHeight())
-                                    finalY = environment.getHeight()-Troop.WIDTH;
+                            if(finalX < 0 || finalX > environment.getWidth())
+                                    finalX = troop.x;
+                            if(finalY < 0 || finalY > environment.getHeight())
+                                    finalY = troop.y;
                             //prevent bumping into other troops
-                            if(!findTroopsInRange(finalX,finalY,Troop.WIDTH).isEmpty()){
+                            /*if(!findTroopsInRange(gt.troop,Troop.WIDTH).isEmpty()){
                                     return;
-                            }
+                            }*/
                             //change pos
                             gt.troop.setPos(finalX, finalY);
                             break;
                     case shoot:
-                            ArrayList<Troop> troopsInRange = findTroopsInRange(gt.troop.x,gt.troop.y,Troop.RADIUS);
+                            ArrayList<Troop> troopsInRange = findTroopsInRange(gt.troop,Troop.RADIUS);
                             for(Troop t : troopsInRange){
-                                    if(t.equals(gt.target) && t.health>0){
+                                    if(t.equals(gt.target)){
                                     	gt.troop.lastTarget = t;
                                     	t.health--;
-                                    	System.out.println(t.health);
                                     }
                             }
                             break;
@@ -121,12 +116,12 @@ public class Main extends JPanel{
             }
     }
     
-    public ArrayList<Troop> findTroopsInRange(double x, double y, double range){
+    public ArrayList<Troop> findTroopsInRange(Troop troop, double range){
             ArrayList<Troop> closeTroops = new ArrayList<Troop>();
             for(int i=0; i< troops.length; i++)
         {
             for(Troop t : troops[i]){
-                    if(inRange(t.x,t.y,x,y)){
+                    if(inRange(t.x,t.y,troop.x,troop.y) && !t.equals(troop) && t.health>0){
                             closeTroops.add(t);
                     }
             }  
@@ -151,7 +146,8 @@ public class Main extends JPanel{
     public class Troop {
             private double x;
             private double y;
-            private int health = 3;
+            public static final int MAX_HEALTH = 10;
+            private int health = MAX_HEALTH;
             private final static int RADIUS = 20;
             private final static double WIDTH = 5;
             protected actions lastAction = actions.walk;
@@ -176,7 +172,7 @@ public class Main extends JPanel{
              * @return A list of objects in the radius of the troop.
              */
             public ArrayList<Troop> look(){
-                    return findTroopsInRange(x,y,RADIUS);
+                    return findTroopsInRange(this,RADIUS);
             }
 
             public final void walk(double x, double y){

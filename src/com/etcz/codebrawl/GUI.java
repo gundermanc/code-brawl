@@ -38,6 +38,9 @@ public class GUI extends JPanel
                 case walk:                
                     break;
                 case shoot:
+                	if(t.lastTarget==null){
+                		break;
+                	}
                     g.drawLine((int)t.getX(),(int)t.getY(),(int)t.lastTarget.getX(),(int)t.lastTarget.getY());
                     break;
                 }
@@ -59,6 +62,9 @@ public class GUI extends JPanel
                 case walk:                
                     break;
                 case shoot:
+                	if(t.lastTarget==null){
+                		break;
+                	}
                     g.drawLine((int)t.getX(),(int)t.getY(),(int)t.lastTarget.getX(),(int)t.lastTarget.getY());
                     break;
                 }
@@ -78,6 +84,9 @@ public class GUI extends JPanel
                 case walk:                
                     break;
                 case shoot:
+                	if(t.lastTarget==null){
+                		break;
+                	}
                     g.drawLine((int)t.getX(),(int)t.getY(),(int)t.lastTarget.getX(),(int)t.lastTarget.getY());
                     break;
                 }
