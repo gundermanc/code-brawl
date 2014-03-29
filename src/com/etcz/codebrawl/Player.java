@@ -9,7 +9,7 @@ public class Player
         this.troops = troops;
     }
     
-    public Main.Troop[] getTroop()
+    public Main.Troop[] getTroops()
     {
         return this.troops;
     }
