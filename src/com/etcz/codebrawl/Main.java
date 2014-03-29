@@ -1,5 +1,6 @@
 package com.etcz.codebrawl;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import src.com.etcz.codebrawl.PlayerInterface;
@@ -8,10 +9,13 @@ import src.com.etcz.codebrawl.PlayerInterface;
 public class Main {
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
-    private Troops[] player1;
-    private Troops[] player2;
+    private Troop[] player1;
+    private Troop[] player2;
     PlayerInterface player1Interface;
     PlayerInterface player2Interface;
+	public enum actions{
+		walk, shoot
+	}
     
     public Main() {
 	this.actionQueue = new LinkedList<GameTurn>();
@@ -25,8 +29,67 @@ public class Main {
     public void QueueAction(GameTurn action) {
 	this.actionQueue.offerLast(action);
     }
+    
+    public ArrayList<Troop> findTroopsInRange(double x, double y){
+    	ArrayList<Troop> troops = new ArrayList<Troop>();
+    	for(Troop t : player1){
+    		if(inRange(t.x,t.y,x,y)){
+    			troops.add(t);
+    		}
+    	}
+    	return troops;
+    }
+    
+    public boolean inRange(double x1, double y1, double x2, double y2){
+    	return Math.pow(x1-x2, 2) + Math.pow(71-y2, 2) < Troop.radius;
+    }
 
     public static void main(String[] args) {
 	Main main = new Main();
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    public class Troop {
+    	private double x;
+    	private double y;
+    	private int health = 3;
+    	private static int radius = 10;
+    	
+    	public Troop(double x, double y){
+    		this.x = x;
+    		this.y = y;
+    	}
+    	
+    	public double getX(){
+    		return x;
+    	}
+    	public double getY(){
+    		return y;
+    	}
+    	public int getHealth(){
+    		return health;
+    	}
+    	
+    	/**
+    	 * @return A list of objects in the radius of the troop.
+    	 */
+    	public ArrayList<Troop> look(){
+    		return findTroopsInRange(x,y);
+    	}
+
+    	public final void walk(double x, double y){
+    		QueueAction(new GameTurn(actions.walk,this));
+    	}
+    	
+    	public final void shoot(double x, double y){
+    		QueueAction(new GameTurn(actions.shoot,this));
+    	}
+    	
+    	private void setPos(double x, double y){
+    		this.x = x;
+    		this.y = y;
+    	}
+    	private void setHealth(int health){
+    		this.health = health;
+    	}
     }
 }
