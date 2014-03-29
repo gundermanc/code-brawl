@@ -3,16 +3,11 @@ package com.etcz.codebrawl;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import src.com.etcz.codebrawl.PlayerInterface;
-
-
 public class Main {
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
     private Troop[] player1;
     private Troop[] player2;
-    PlayerInterface player1Interface;
-    PlayerInterface player2Interface;
 	public enum actions{
 		walk, shoot
 	}
@@ -52,7 +47,7 @@ public class Main {
     	private double x;
     	private double y;
     	private int health = 3;
-    	private static int radius = 10;
+    	private final static int RADIUS = 10;
     	
     	public Troop(double x, double y){
     		this.x = x;
