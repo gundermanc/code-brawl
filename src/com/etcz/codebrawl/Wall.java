@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 package com.etcz.codebrawl;
 
+=======
+package src.com.etcz.codebrawl;
+import src.com.etcz.codebrawl.*;
+>>>>>>> 94e1301618fb383ddc8433e431aba628f3b22596
 public class Wall {
 
     private int x;
