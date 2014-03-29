@@ -2,8 +2,16 @@ package com.etcz.codebrawl;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+<<<<<<< HEAD
 
 public class Main {
+=======
+import java.awt.*;
+import javax.swing.*;
+import src.com.etcz.codebrawl.*;
+
+public class Main extends JPanel, JFrame {
+>>>>>>> 18b6ae504ce0f3a1448b398d9923068f8de9c8aa
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
     private int max_troop;
@@ -13,10 +21,17 @@ public class Main {
 	}
     
     public Main(int numberOfPlayers) {
+<<<<<<< HEAD
 	this.actionQueue = new LinkedList<GameTurn>();
         players = new Player[numberOfPlayers];
         environment = new EnvironmentInfo(numberOfPlayers,numberOfPlayers);
         for (int i = 0, len = players.length; i < len; i++)
+=======
+        this.actionQueue = new LinkedList<GameTurn>();
+        this.players = new Player[numberOfPlayers];
+        this.environment = new EnvironmentInfo();
+        for (int i = 0; i < players.length; i++)
+>>>>>>> 18b6ae504ce0f3a1448b398d9923068f8de9c8aa
         {
             Troop[] t = new Troop[max_troop];
             for (int j = 0; i<max_troop; i++)
@@ -29,7 +44,7 @@ public class Main {
 
     
     public void QueueAction(GameTurn action) {
-	this.actionQueue.offerLast(action);
+        this.actionQueue.offerLast(action);
     }
     
     public void processQueue(){
@@ -90,8 +105,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-	Main main = new Main(Integer.parseInt(args[0]));
+       Main main = new Main(Integer.parseInt(args[0]));
     }
+
     ///////////////////////////////////////////////////////////////////////////////////////////
     public class Troop {
     	private double x;
@@ -106,13 +122,13 @@ public class Main {
     	}
     	
     	public double getX(){
-    		return x;
+    		return this.x;
     	}
     	public double getY(){
-    		return y;
+    		return this.y;
     	}
     	public int getHealth(){
-    		return health;
+    		return this.health;
     	}
     	
     	/**
