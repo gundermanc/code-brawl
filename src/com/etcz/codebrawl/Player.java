@@ -3,15 +3,15 @@ import src.com.etcz.codebrawl.*;
 
 public class Player
 {
-    private Main.Troop[] troop;
-    public void player(Main.Troop[] troop)
+    private Main.Troop[] troops;
+    public void player(Main.Troop[] troops)
     {
-        this.troop = troop;
+        this.troops = troops;
     }
     
     public Main.Troop[] getTroop()
     {
-        return troop;
+        return this.troops;
     }
     
 }
