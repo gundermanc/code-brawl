@@ -1,4 +1,4 @@
-package src.com.etcz.codebrawl;
+package com.etcz.codebrawl;
 
 public class EnvironmentInfo
 {
