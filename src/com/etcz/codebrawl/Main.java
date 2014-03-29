@@ -38,6 +38,13 @@ public class Main {
     	for(GameTurn gt : actionQueue){
     		switch(gt.act){
     		case walk:
+    			double finalX = gt.troop.x + gt.xChange;
+    			double finalY = gt.troop.y + gt.yChange;
+    			if(finalX < 0)
+    				finalX = 0;
+    			else if(finalX > environment.getWidth())
+    				finalX = environment.getWidth();
+    			gt.troop.setPos(finalX, finalY);
     			break;
     		case shoot:
     			break;
@@ -95,7 +102,7 @@ public class Main {
     	}
 
     	public final void walk(double x, double y){
-    		QueueAction(new GameTurn(actions.walk,this));
+    		QueueAction(new GameTurn(actions.walk,this,x,y));
     	}
     	
     	public final void shoot(double x, double y){
