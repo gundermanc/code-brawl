@@ -1,3 +1,8 @@
+/**
+ * To add: timer for the match
+ * 	timer for each method?
+ * importing functions
+ */
 package com.etcz.codebrawl;
 import com.etcz.codebrawl.*;
 import java.util.ArrayList;
@@ -18,14 +23,12 @@ public class Main extends JPanel{
     
     public Main(String[] args) throws Exception{
         int numPlayers = Integer.parseInt(args[0]);
-        /*for (int i = 1; i < args.length; i++)
+        players = new Player[numPlayers];
+        for (int i = 1; i < args.length; i++)
         {
             Class temp = Class.forName("com.etcz.codebrawl."+args[i]);
-            players[i] = (Player)temp.newInstance();
-        }*/
-        players = new Player[2];
-        players[0] = new Player1();
-        players[1] = new Player2();
+            players[i-1] = (Player)temp.newInstance();
+        }
         
         this.actionQueue = new LinkedList<GameTurn>();
         this.environment = new EnvironmentInfo(numPlayers);

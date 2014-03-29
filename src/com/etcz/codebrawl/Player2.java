@@ -6,7 +6,11 @@ public class Player2 extends Player{
 	
 	public void tick(Main.Troop troop){
 		ArrayList<Main.Troop> visible = troop.look();
+		//if someone in range
 		if(!visible.isEmpty()){
+			if(){
+				
+			}
 			Main.Troop t = visible.get(0);
 			troop.shoot(t);
 		} else{
