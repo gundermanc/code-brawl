@@ -11,11 +11,11 @@ public class EnvironmentInfo
     }
     
     public void setWalls()
-    {   
+    {
     }
     
     public void update(GameTurn turn)
-    {   
+    {
     }
     
     public double getWidth()
