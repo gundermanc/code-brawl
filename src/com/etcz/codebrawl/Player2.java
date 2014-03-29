@@ -6,30 +6,30 @@ import com.etcz.codebrawl.Main.Troop;
 
 public class Player2 extends Player{
 	
+	Troop currentEnemy = null;
+	
 	public void tick(Troop troop, EnvironmentInfo env){
+		if(currentEnemy != null && currentEnemy.getHealth() <= 0){
+			currentEnemy = null;
+		}
 		ArrayList<Troop> visible = troop.look();
 		//if someone in range
 		if(!visible.isEmpty()){
 			//if enemy
 			Troop sighted = visible.get(0);
 			if(sighted.getPlayerID() != troop.getPlayerID()){
-				//if more than half health
-				if(troop.getHealth() > Troop.MAX_HEALTH/4){
-					troop.shoot(sighted);
+				if(currentEnemy == null){
+					currentEnemy = sighted;
 				}
-				//if less than quarter health
-				else{
-					troop.walk(troop.getX()-sighted.getX(),troop.getY()-sighted.getY());
-				}
-			}
-			//if ally
-			else{
-				troop.walk(troop.getX()-sighted.getX(),troop.getY()-sighted.getY());
+				troop.shoot(sighted);
 			}
 		}
 		//nothing in range
 		else{
-			troop.walk((2*Math.random())-1,2*(Math.random())-1);
+			if(currentEnemy != null){
+				troop.walk(currentEnemy.getX()-troop.getX(), currentEnemy.getY()-troop.getY());
+			}
+			troop.walk(0,0);
 		}
 	
 	}

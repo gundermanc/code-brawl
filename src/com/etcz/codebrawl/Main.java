@@ -208,7 +208,7 @@ public class Main extends JPanel{
         private double y;
         public static final int MAX_HEALTH = 10;
         private int health = MAX_HEALTH;
-        private int radius = 30;
+        private int radius = 35;
         private int damage = 1;
         public static final double WIDTH = 12;
         protected actions lastAction = actions.walk;
