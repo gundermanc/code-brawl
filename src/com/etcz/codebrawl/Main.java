@@ -24,16 +24,19 @@ public class Main {
     
     public ArrayList<Troop> findTroopsInRange(double x, double y){
     	ArrayList<Troop> troops = new ArrayList<Troop>();
-    	for(Troop t : player1){
+    	for(int i = 0; i < players.length; i++)
+        {
+            for(Troop t : players[i]){
     		if(inRange(t.x,t.y,x,y)){
     			troops.add(t);
     		}
-    	}
+            }  
+        }
     	return troops;
     }
     
     public boolean inRange(double x1, double y1, double x2, double y2){
-    	return Math.pow(x1-x2, 2) + Math.pow(71-y2, 2) < Troop.radius;
+    	return Math.pow(x1-x2, 2) + Math.pow(71-y2, 2) < Troop.RADIUS;
     }
 
     public static void main(String[] args) {
