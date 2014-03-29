@@ -11,11 +11,17 @@ public class Main extends JPanel{
     private EnvironmentInfo environment;
     private int max_troop;
     private Troop[][] troops;
+    private Player[] players;
 	public enum actions{
 		walk, shoot
 	}
     
     public Main(int numPlayers) {
+    	//load players
+    	players = new Player[numPlayers];
+    	players[0] = new Player1();
+    	players[1] = new Player2();
+    	
         this.actionQueue = new LinkedList<GameTurn>();
         this.environment = new EnvironmentInfo(numPlayers);
         //create troops

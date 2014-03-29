@@ -1,10 +1,8 @@
 package com.etcz.codebrawl;
 import com.etcz.codebrawl.*;
-public class Player
+public abstract class Player
 {
 	
-	public void tick(Main.Troop troop){
-		troop.walk(-1, 0);
-	}
+	public abstract void tick(Main.Troop troop);
     
 }
