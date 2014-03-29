@@ -5,27 +5,44 @@ import java.util.LinkedList;
 import java.awt.*;
 import javax.swing.*;
 
-public class Main extends JPanel, JFrame{
+public class Main extends JPanel{
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
     private int max_troop;
-    private Player[] players;
+    private Troop[][] troops;
 	public enum actions{
 		walk, shoot
 	}
     
-    public Main(int numberOfPlayers) {
+    public Main(int numPlayers) {
         this.actionQueue = new LinkedList<GameTurn>();
-        this.players = new Player[numberOfPlayers];
-        this.environment = new EnvironmentInfo(numberOfPlayers);
-        for (int i = 0, len=players.length; i < len; i++)
+        this.environment = new EnvironmentInfo(numPlayers);
+        //create troops
+        troops = new Troop[numPlayers][max_troop];
+        for (int i = 0, len=numPlayers; i < len; i++)
         {
-            Troop[] t = new Troop[max_troop];
             for (int j = 0; i<max_troop; i++)
             {
-                t[j] = new Troop(Math.random()*environment.getWidth(),Math.random()*environment.getHeight());
+                troops[i][j] = new Troop(Math.random()*environment.getWidth(),Math.random()*environment.getHeight());
             }
-            players[i] = new Player(t);
+        }
+        while(true){
+        	//loop though troops
+        	for(int i=0; i<numPlayers; i++){
+        		boolean eliminated = true;
+        		for(Troop t : troops[i]){
+        			if(t.health>0){
+        				eliminated = false;
+        				//TODO call player i's tick function
+            			//tick(t);
+        			}
+        		}
+        		if(eliminated){
+        			return;//TODO victory message
+        		}
+        	}
+        	//process queue
+        	processQueue();
         }
     }
 
@@ -35,7 +52,8 @@ public class Main extends JPanel, JFrame{
     }
     
     public void processQueue(){
-    	for(GameTurn gt : actionQueue){
+    	GameTurn gt;
+    	while((gt = actionQueue.poll())!=null){
     		switch(gt.act){
     		case walk:
     			double finalX = gt.troop.x + gt.x;
@@ -71,16 +89,16 @@ public class Main extends JPanel, JFrame{
     }
     
     public ArrayList<Troop> findTroopsInRange(double x, double y, double range){
-    	ArrayList<Troop> troops = new ArrayList<Troop>();
-    	for(int i = 0; i < players.length; i++)
+    	ArrayList<Troop> closeTroops = new ArrayList<Troop>();
+    	for(int i=0; i< troops.length; i++)
         {
-            for(Troop t : players[i].getTroops()){
+            for(Troop t : troops[i]){
     		if(inRange(t.x,t.y,x,y)){
-    			troops.add(t);
+    			closeTroops.add(t);
     		}
             }  
         }
-    	return troops;
+    	return closeTroops;
     }
     
     public boolean inRange(double x1, double y1, double x2, double y2){
@@ -92,7 +110,8 @@ public class Main extends JPanel, JFrame{
     }
 
     public static void main(String[] args) {
-       Main main = new Main(Integer.parseInt(args[0]));
+       //Main main = new Main(Integer.parseInt(args[0]));
+    	Main main = new Main(2);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////

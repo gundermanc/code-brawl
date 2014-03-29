@@ -2,15 +2,9 @@ package com.etcz.codebrawl;
 
 public class Player
 {
-    private Main.Troop[] troops;
-    public Player(Main.Troop[] troops)
-    {
-        this.troops = troops;
-    }
-    
-    public Main.Troop[] getTroops()
-    {
-        return this.troops;
-    }
+	
+	public void tick(Main.Troop troop){
+		troop.walk(-1, 0);
+	}
     
 }
