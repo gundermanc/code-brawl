@@ -4,11 +4,11 @@ import Random;
 
 public class Player4 extends Player {
     
-    Troop me;
+    Main.Troop me;
     public void tick(Main.Troop troop) {
         this.me = troop;
-        ArrayList<Troop> enemies;
-        ArrayList<Troop> temp = troop.look();
+        ArrayList<Main.Troop> enemies = null;
+        ArrayList<Main.Troop> temp = troop.look();
 
         // grab all of the enemies
         for (int i = 0; i < temp.size(); i++) {
@@ -18,7 +18,7 @@ public class Player4 extends Player {
         }
 
         // detect if an enemy is in range
-        Troop enemy = getNearestEnemy();
+        Main.Troop enemy = getNearestEnemy();
         // shoot the enemy
         if (enemy != null) {
             this.me.shoot(enemy);
@@ -47,7 +47,7 @@ public class Player4 extends Player {
     }
 
     // get the first enemy that is within your range
-    public Troop getNearestEnemy() {
+    public Main.Troop getNearestEnemy() {
         for (int i = 0; i < enemies.size(); i++) {
             if (Math.abs(this.me.getX() - enemies.get(i).getX() <= 30 || 
                 Math.abs(this.me.getY() - enemies.get(i).getY()) <= 30) {
