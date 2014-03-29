@@ -1,9 +1,9 @@
-package src.com.etcz.codebrawl;
+package com.etcz.codebrawl;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import src.com.etcz.codebrawl.*;
+import com.etcz.codebrawl.*;
 
 public class Main {
     private LinkedList<GameTurn> actionQueue;
@@ -27,7 +27,7 @@ public class Main {
             }
             players[i] = new Player(t);
         }
-        GUI g = new GUI(players[players.length].getTroop(), environment);
+        GUI g = new GUI(players[players.length].getTroops(), environment);
     }
 
     
@@ -39,8 +39,8 @@ public class Main {
     	for(GameTurn gt : actionQueue){
     		switch(gt.act){
     		case walk:
-    			double finalX = gt.troop.x + gt.xChange;
-    			double finalY = gt.troop.y + gt.yChange;
+    			double finalX = gt.troop.x + gt.x;
+    			double finalY = gt.troop.y + gt.y;
     			if(finalX < 0)
     				finalX = 0;
     			else if(finalX > environment.getWidth())
@@ -57,7 +57,7 @@ public class Main {
     	ArrayList<Troop> troops = new ArrayList<Troop>();
     	for(int i = 0; i < players.length; i++)
         {
-            for(Troop t : players[i].getTroop()){
+            for(Troop t : players[i].getTroops()){
     		if(inRange(t.x,t.y,x,y)){
     			troops.add(t);
     		}
