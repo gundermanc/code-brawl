@@ -2,10 +2,11 @@ package src.com.etcz.codebrawl;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-
+import java.awt.*;
+import javax.swing.*;
 import src.com.etcz.codebrawl.*;
 
-public class Main {
+public class Main extends JPanel, JFrame {
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
     private int max_troop;
@@ -15,9 +16,9 @@ public class Main {
 	}
     
     public Main(int numberOfPlayers) {
-	this.actionQueue = new LinkedList<GameTurn>();
-        players = new Player[numberOfPlayers];
-        environment = new EnvironmentInfo(numberOfPlayers,numberOfPlayers);
+        this.actionQueue = new LinkedList<GameTurn>();
+        this.players = new Player[numberOfPlayers];
+        this.environment = new EnvironmentInfo();
         for (int i = 0; i < players.length; i++)
         {
             Troop[] t = new Troop[max_troop];
@@ -31,7 +32,7 @@ public class Main {
 
     
     public void QueueAction(GameTurn action) {
-	this.actionQueue.offerLast(action);
+        this.actionQueue.offerLast(action);
     }
     
     public void processQueue(){
@@ -70,8 +71,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-	Main main = new Main(Integer.parseInt(args[0]));
+       Main main = new Main(Integer.parseInt(args[0]));
     }
+
     ///////////////////////////////////////////////////////////////////////////////////////////
     public class Troop {
     	private double x;
@@ -85,13 +87,13 @@ public class Main {
     	}
     	
     	public double getX(){
-    		return x;
+    		return this.x;
     	}
     	public double getY(){
-    		return y;
+    		return this.y;
     	}
     	public int getHealth(){
-    		return health;
+    		return this.health;
     	}
     	
     	/**
