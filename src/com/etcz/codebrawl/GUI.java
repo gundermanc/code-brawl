@@ -6,8 +6,8 @@ import java.awt.Color;
 import javax.swing.*;
 import java.awt.Graphics;
 
-import src.com.etcz.codebrawl.EnvironmentInfo;
-import src.com.etcz.codebrawl.Main;
+import com.etcz.codebrawl.EnvironmentInfo;
+import com.etcz.codebrawl.Main;
 
 public class GUI extends JPanel
 {
@@ -21,48 +21,32 @@ public class GUI extends JPanel
         setVisible(true);
         for (int i = 0; i < troops.length; i++)
         {
-            troopsColor[i] = new Color(((int)(Math.random()*255)),((int)Math.random()*255),((int)Math.random()*255));
+            troopsColor[i] = new Color(((int)(Math.random()*255)),((int)(Math.random()*255)),((int)(Math.random()*255)));
         }
     }
     
     public void paint(Graphics g)
-<<<<<<< HEAD
-    {
-        for (int i = 0; i < troops.length; i++)
-        {
-            g.setColor(new Color(((int)(Math.random()*255)),((int)Math.random()*255),((int)Math.random()*255)));
-=======
     {    
         super.paintComponent(g);
         for (int i = 0; i < troops.length; i++)
         {
             g.setColor(troopsColor[i]);
->>>>>>> 50736d68c5c737195c29b6abad500d43e19f4245
             for (Main.Troop t : troops[i])
             {
-                g.drawArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+                g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
             }
         }
     }
     
     public void repaint(Graphics g)
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        for (int i = 0; i < troops.length; i++)
-        {
-            g.setColor(new Color(((int)(Math.random()*255)),((int)Math.random()*255),((int)Math.random()*255)));
-=======
-=======
-        super.paintComponent(g);
->>>>>>> 4c4fa680b5a3764dac26fb847c29c5babc5e03ef
     	System.out.print("reprinting");//TODO remove
         for (int i = 0; i < troops.length; i++)
         {
             g.setColor(troopsColor[i]);
             for (Main.Troop t : troops[i])
             {
-                g.drawArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+                g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
             }
         }
     }
@@ -72,10 +56,9 @@ public class GUI extends JPanel
         for (int i = 0; i < troops.length; i++)
         {
             g.setColor(troopsColor[i]);
->>>>>>> 50736d68c5c737195c29b6abad500d43e19f4245
             for (Main.Troop t : troops[i])
             {
-                g.drawArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+                g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
             }
         }
     }

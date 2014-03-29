@@ -1,5 +1,5 @@
-package src.com.etcz.codebrawl;
-import src.com.etcz.codebrawl.*;
+package com.etcz.codebrawl;
+import com.etcz.codebrawl.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.awt.*;
@@ -39,6 +39,10 @@ public class Main extends JPanel{
             }
         }
         GUI window = new GUI(troops,environment);
+        JFrame frame = new JFrame("Code BRAWL!!");
+        frame.setSize((int)environment.getWidth(),(int)environment.getHeight());
+        frame.setVisible(true);
+        frame.getContentPane().add(window);
         while(true){
                 int numEliminated = 0;
                 //loop though troops
@@ -87,11 +91,11 @@ public class Main extends JPanel{
                             if(finalX < 0)
                                     finalX = 0;
                             else if(finalX > environment.getWidth())
-                                    finalX = environment.getWidth();
+                                    finalX = environment.getWidth()-Troop.WIDTH;
                             if(finalX < 0)
                                     finalX = 0;
                             else if(finalY > environment.getHeight())
-                                    finalY = environment.getHeight();
+                                    finalY = environment.getHeight()-Troop.WIDTH;
                             //prevent bumping into other troops
                             if(!findTroopsInRange(finalX,finalY,Troop.WIDTH).isEmpty()){
                                     return;
