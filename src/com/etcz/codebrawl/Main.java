@@ -80,7 +80,10 @@ public class Main extends JPanel{
 
     
     public void QueueAction(GameTurn action) {
-    	//Troop lastTroop = actionQueue.getLast()
+    	Troop lastTroop = actionQueue.getLast().troop;
+    	if(action.troop.equals(lastTroop)){
+    		return;//TODO throw exception
+    	}
         this.actionQueue.offerLast(action);
     }
     
@@ -157,7 +160,7 @@ public class Main extends JPanel{
             protected Troop lastTarget = null;
             private int playerID;
             
-            public Troop(double x, double y, int playerID){
+            private Troop(double x, double y, int playerID){
                     this.x = x;
                     this.y = y;
                     this.playerID = playerID;
