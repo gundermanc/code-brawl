@@ -1,11 +1,12 @@
-package com.etcz.codebrawl;
+package src.com.etcz.codebrawl;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.awt.*;
 import javax.swing.*;
+import src.com.etcz.codebrawl.*;
 
-public class Main extends JPanel, JFrame{
+public class Main {
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
     private int max_troop;

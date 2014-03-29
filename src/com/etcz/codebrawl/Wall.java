@@ -1,5 +1,5 @@
 package src.com.etcz.codebrawl;
-
+import src.com.etcz.codebrawl.*;
 public class Wall {
 
     private int x;
