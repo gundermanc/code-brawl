@@ -33,7 +33,11 @@ public class GUI extends JPanel
             g.setColor(troopsColor[i]);
             for (Main.Troop t : troops[i])
             {
-            	g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+            	if(t.getHealth() == 0){
+            		g.drawArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+            	} else{
+            		g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+            	}
                 switch(t.lastAction){
                 case walk:                
                     break;
@@ -41,7 +45,7 @@ public class GUI extends JPanel
                 	if(t.lastTarget==null){
                 		break;
                 	}
-                    g.drawLine((int)t.getX(),(int)t.getY(),(int)t.lastTarget.getX(),(int)t.lastTarget.getY());
+                	g.drawLine((int)t.getX()+5,(int)t.getY()+5,(int)t.lastTarget.getX()+5,(int)t.lastTarget.getY()+5);
                     break;
                 }
             }
@@ -57,7 +61,11 @@ public class GUI extends JPanel
             g.setColor(troopsColor[i]);
             for (Main.Troop t : troops[i])
             {
-            	g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+            	if(t.getHealth() == 0){
+            		g.drawArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+            	} else{
+            		g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+            	}
                 switch(t.lastAction){
                 case walk:                
                     break;
@@ -65,7 +73,7 @@ public class GUI extends JPanel
                 	if(t.lastTarget==null){
                 		break;
                 	}
-                    g.drawLine((int)t.getX(),(int)t.getY(),(int)t.lastTarget.getX(),(int)t.lastTarget.getY());
+                	g.drawLine((int)t.getX()+5,(int)t.getY()+5,(int)t.lastTarget.getX()+5,(int)t.lastTarget.getY()+5);
                     break;
                 }
             }
@@ -79,7 +87,11 @@ public class GUI extends JPanel
             g.setColor(troopsColor[i]);
             for (Main.Troop t : troops[i])
             {
-            	g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+            	if(t.getHealth() == 0){
+            		g.drawArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+            	} else{
+            		g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+            	}
                 switch(t.lastAction){
                 case walk:                
                     break;
@@ -87,7 +99,7 @@ public class GUI extends JPanel
                 	if(t.lastTarget==null){
                 		break;
                 	}
-                    g.drawLine((int)t.getX(),(int)t.getY(),(int)t.lastTarget.getX(),(int)t.lastTarget.getY());
+                    g.drawLine((int)t.getX()+5,(int)t.getY()+5,(int)t.lastTarget.getX()+5,(int)t.lastTarget.getY()+5);
                     break;
                 }
             }

@@ -35,12 +35,12 @@ public class Main extends JPanel{
         {
             for (int j = 0; j<max_troop; j++)
             {
-                troops[i][j] = new Troop(Math.random()*environment.getWidth(),Math.random()*environment.getHeight());
+                troops[i][j] = new Troop(Math.random()*environment.getWidth(),Math.random()*environment.getHeight(),i);
             }
         }
         GUI window = new GUI(troops,environment);
         JFrame frame = new JFrame("Code BRAWL!!");
-        frame.setSize((int)environment.getWidth()+20,(int)environment.getHeight()+20);//TODO added 50
+        frame.setSize((int)environment.getWidth()+25,(int)environment.getHeight()+40);//TODO added 50
         frame.setVisible(true);
         frame.getContentPane().add(window);
         while(true){
@@ -148,14 +148,16 @@ public class Main extends JPanel{
             private double y;
             public static final int MAX_HEALTH = 10;
             private int health = MAX_HEALTH;
-            private final static int RADIUS = 20;
+            private final static int RADIUS = 30;
             private final static double WIDTH = 5;
             protected actions lastAction = actions.walk;
             protected Troop lastTarget = null;
+            private int playerID;
             
-            public Troop(double x, double y){
+            public Troop(double x, double y, int playerID){
                     this.x = x;
                     this.y = y;
+                    this.playerID = playerID;
             }
             
             public double getX(){
@@ -166,6 +168,9 @@ public class Main extends JPanel{
             }
             public int getHealth(){
                     return this.health;
+            }
+            public int getPlayerID(){
+            	return this.playerID;
             }
             
             /**
