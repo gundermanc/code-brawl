@@ -10,4 +10,12 @@ public class Wall {
         this.y = y;
     }
 
+    public int getX() {
+        return this.x;
+    }
+
+    publiuc int getY() {
+        return this.y;
+    }
+
 }
