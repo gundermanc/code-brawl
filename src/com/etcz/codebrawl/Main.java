@@ -2,6 +2,7 @@ package com.etcz.codebrawl;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import com.etcz.codebrawl.*;
 
 public class Main {
     private LinkedList<GameTurn> actionQueue;
@@ -16,8 +17,6 @@ public class Main {
 	this.actionQueue = new LinkedList<GameTurn>();
         for (int i = 0; i < player1.length; i++)
         {
-            player1[i] = new Troops(startingPosition1X,startingPosition1Y);
-            player2[i] = new Troops(startingPosition1X,startingPosition1Y);
         }
     }
 
