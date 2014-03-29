@@ -9,7 +9,7 @@ import com.etcz.codebrawl.*;
 public class Main extends JPanel{
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
-    private int max_troop;
+    private int max_troop = 5;
     private Troop[][] troops;
     private Player[] players;
         public enum actions{
@@ -18,18 +18,22 @@ public class Main extends JPanel{
     
     public Main(String[] args) throws Exception{
         int numPlayers = Integer.parseInt(args[0]);
-        for (int i = 1; i < args.length; i++)
+        /*for (int i = 1; i < args.length; i++)
         {
-            Class temp = Class.forName(args[i]);
+            Class temp = Class.forName("com.etcz.codebrawl."+args[i]);
             players[i] = (Player)temp.newInstance();
-        }
+        }*/
+        players = new Player[2];
+        players[0] = new Player1();
+        players[1] = new Player2();
+        
         this.actionQueue = new LinkedList<GameTurn>();
         this.environment = new EnvironmentInfo(numPlayers);
         //create troops
         troops = new Troop[numPlayers][max_troop];
         for (int i = 0, len=numPlayers; i < len; i++)
         {
-            for (int j = 0; i<max_troop; i++)
+            for (int j = 0; j<max_troop; j++)
             {
                 troops[i][j] = new Troop(Math.random()*environment.getWidth(),Math.random()*environment.getHeight());
             }
@@ -43,9 +47,8 @@ public class Main extends JPanel{
                         for(Troop t : troops[i]){
                                 if(t.health>0){
                                         eliminated = false;
-                                        //TODO call player i's tick function
-                                    //tick(t);
-                                window.pack();
+                                        players[i].tick(t);
+                                window.repaint();
                                 }
                         }
                         if(eliminated){
