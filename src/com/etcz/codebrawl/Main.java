@@ -8,12 +8,14 @@ import src.com.etcz.codebrawl.*;
 public class Main {
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
+    private Player[] players;
 	public enum actions{
 		walk, shoot
 	}
     
-    public Main() {
+    public Main(int numberOfPlayers) {
 	this.actionQueue = new LinkedList<GameTurn>();
+        players = new Player[numberOfPlayers];
     }
 
     public void QueueAction(GameTurn action) {
@@ -35,7 +37,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-	Main main = new Main();
+	Main main = new Main(Integer.parseInt(args[0]));
     }
     ///////////////////////////////////////////////////////////////////////////////////////////
     public class Troop {
