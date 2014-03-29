@@ -1,19 +1,23 @@
 package com.etcz.codebrawl;
 
-import Random;
+import java.util.ArrayList;
+
 
 public class Player4 extends Player {
     
     Main.Troop me;
-    public void tick(Main.Troop troop) {
+    ArrayList<Main.Troop> enemies;
+    public void tick(Main.Troop troop, EnvironmentInfo env) {
         this.me = troop;
-        ArrayList<Main.Troop> enemies = null;
+        enemies = new ArrayList<>();
         ArrayList<Main.Troop> temp = troop.look();
 
         // grab all of the enemies
         for (int i = 0; i < temp.size(); i++) {
             if (troop.getPlayerID() != temp.get(i).getPlayerID()) {
-                enemies.add(temp.get(i));
+            	if (temp.get(i) != null) {
+            		enemies.add(temp.get(i));
+            	}	
             }
         }
 
@@ -40,7 +44,7 @@ public class Player4 extends Player {
             }
             else {
                 // move left 3 and up 1
-                this.me.walk(-3, -1);
+                this.me.walk(-3, 2);
             }
         }
 
@@ -48,12 +52,14 @@ public class Player4 extends Player {
 
     // get the first enemy that is within your range
     public Main.Troop getNearestEnemy() {
-        for (int i = 0; i < enemies.size(); i++) {
-            if (Math.abs(this.me.getX() - enemies.get(i).getX() <= 30 || 
-                Math.abs(this.me.getY() - enemies.get(i).getY()) <= 30) {
-                return enemies.get(i);
-            }
-        }
+    	if (enemies != null) {
+	        for (int i = 0; i < enemies.size(); i++) {
+	            if (Math.abs(this.me.getX() - enemies.get(i).getX()) <= 30 || 
+	                Math.abs(this.me.getY() - enemies.get(i).getY()) <= 30) {
+	                return enemies.get(i);
+	            }
+	        }
+    	}
         return null;
     }
 }

@@ -28,18 +28,19 @@ public class GameTurn {
 	 * @param y
 	 */
 	public GameTurn(Main.actions act, Main.Troop troop, double x, double y){
+		//normalize
+		double len = Math.sqrt(x*x + y*y);
+		if(len == 0){
+			x=0;
+			y=0;
+		} else{
+			x=x/len;
+			y=y/len;
+		}
 		this.act = act;
 		this.troop = troop;
 		this.x = x;
 		this.y = y; 
-		//normalize
-		if(x>y){
-			x = 1;
-			y = x/y;
-		} else{
-			y = 1;
-			x = y/x;
-		}
 	}
 	
 }
