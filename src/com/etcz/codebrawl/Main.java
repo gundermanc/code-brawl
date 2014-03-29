@@ -1,16 +1,12 @@
-package src.com.etcz.codebrawl;
+package com.etcz.codebrawl;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.awt.*;
 import javax.swing.*;
-import src.com.etcz.codebrawl.*;
+import com.etcz.codebrawl.*;
 
-<<<<<<< HEAD
 public class Main extends JPanel{
-=======
-public class Main {
->>>>>>> 94e1301618fb383ddc8433e431aba628f3b22596
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
     private int max_troop;
@@ -32,6 +28,7 @@ public class Main {
             }
         }
         while(true){
+        	int numEliminated = 0;
         	//loop though troops
         	for(int i=0; i<numPlayers; i++){
         		boolean eliminated = true;
@@ -43,8 +40,11 @@ public class Main {
         			}
         		}
         		if(eliminated){
-        			return;//TODO victory message
+        			numEliminated++;
         		}
+        	}
+        	if(numEliminated >= numPlayers--){
+        		break;//TODO game over
         	}
         	//process queue
         	processQueue();
