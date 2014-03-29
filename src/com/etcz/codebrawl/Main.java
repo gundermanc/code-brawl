@@ -15,6 +15,7 @@ public class Main extends JPanel{
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
     private int max_troop = 5;
+    private final int max_turns = 500;
     private Troop[][] troops;
     private Player[] players;
         public enum actions{
@@ -46,23 +47,27 @@ public class Main extends JPanel{
         frame.setSize((int)environment.getWidth()+25,(int)environment.getHeight()+40);//TODO added 50
         frame.setVisible(true);
         frame.getContentPane().add(window);
-        while(true){
-                int numEliminated = 0;
+        
+        ArrayList<Integer> eliminated = new ArrayList<Integer>();
+        int numEliminated = 0;
+        
+        for(int n=0; n < max_turns && numEliminated+1 < numPlayers; n++){
                 //loop though troops
                 for(int i=0; i<numPlayers; i++){
-                        boolean eliminated = true;
-                        for(Troop t : troops[i]){
-                                if(t.health>0){
-                                        eliminated = false;
-                                        players[i].tick(t);
-                                }
-                        }
-                        if(eliminated){
-                                numEliminated++;
-                        }
-                }
-                if(numEliminated >= numPlayers-1){
-                        break;//TODO game over
+                	//if player not eliminated
+                    if(!eliminated.contains(i)){
+                    	for(Troop t : troops[i]){
+                    		boolean allDead = true;
+                            if(t.health>0){
+                            	allDead = false;
+                                    players[i].tick(t);
+                            }
+                            if(allDead){
+                            	eliminated.add(i);
+                            	numEliminated++;
+                            }
+                    	}
+                    }
                 }
                 window.validate();
                 window.repaint();
@@ -75,13 +80,16 @@ public class Main extends JPanel{
                 processQueue();
             window.repaint();
         }
-        
+        if(numEliminated+1 == numPlayers){
+        	JOptionPane.showMessageDialog(this, "Congrats! Winner!");
+        } else{
+        	JOptionPane.showMessageDialog(this, "Out of time.");
+        }
     }
 
     
     public void QueueAction(GameTurn action) {
-    	Troop lastTroop = actionQueue.getLast().troop;
-    	if(action.troop.equals(lastTroop)){
+    	if(!actionQueue.isEmpty() && actionQueue.getLast().troop.equals(action.troop)){
     		return;//TODO throw exception
     	}
         this.actionQueue.offerLast(action);
