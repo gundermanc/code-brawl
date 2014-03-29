@@ -8,20 +8,20 @@ import java.awt.Graphics;
 
 public class GUI extends JFrame
 {
-    Main.Troop[] troop;
-    public GUI(Main.Troop[][] troop,EnvironmentInfo env)
+    Main.Troop[][] troops;
+    public GUI(Main.Troop[][] troops,EnvironmentInfo env)
     {
-        this.troop = troop;
+        this.troops = troops;
         setSize((int)env.getHeight(), (int)env.getHeight());
         setVisible(true);
     }
     
     public void paint(Graphics g)
     {
-        for (int i = 0; i < troop.length; i++)
+        for (int i = 0; i < troops.length; i++)
         {
             g.setColor(new Color(((int)Math.random()*255),((int)Math.random()*255),((int)Math.random()*255)));
-            for (Main.Troop t : troop[i])
+            for (Main.Troop t : troops[i])
             {
                 g.drawArc((int)t.getX(),(int)t.getY(),10,10,0,360);
             }
