@@ -48,15 +48,21 @@ public class Main extends JPanel{
                                 if(t.health>0){
                                         eliminated = false;
                                         players[i].tick(t);
-                                window.repaint();
                                 }
                         }
                         if(eliminated){
                                 numEliminated++;
                         }
                 }
-                if(numEliminated >= numPlayers--){
+                if(numEliminated >= numPlayers-1){
                         break;//TODO game over
+                }
+                window.validate();
+                window.repaint();
+                try {
+                    Thread.sleep(100);
+                } catch(InterruptedException ex) {
+                    Thread.currentThread().interrupt();
                 }
                 //process queue
                 processQueue();
