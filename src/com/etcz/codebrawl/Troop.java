@@ -3,11 +3,18 @@ package com.etcz.codebrawl;
 public class Troop {
 	private float x;
 	private float y;
+	private int playerNum;
 	private int health;
 	private static int radius;
 	
-	public Troop(float x, float y){
-		
+	private Main mainPointer;
+	
+	public enum actions{
+		walk, shoot
+	}
+	
+	public Troop(float x, float y, int playerNum, Main mainPointer){
+		this.mainPointer = mainPointer;
 	}
 	
 	public float getX(){
@@ -25,14 +32,10 @@ public class Troop {
 	}
 
 	public final void walk(float x, float y){
-		Main.QueueAction(new GameTurn(){
-			//holds 
-		});
+		mainPointer.QueueAction(new GameTurn(actions.walk,this));
 	}
 	
 	public final void shoot(float x, float y){
-		Main.QueueAction(new GameTurn(){
-			
-		});
+		mainPointer.QueueAction(new GameTurn(actions.shoot,this));
 	}
 }
