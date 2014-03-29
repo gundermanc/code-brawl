@@ -22,6 +22,17 @@ public class Main {
 	this.actionQueue.offerLast(action);
     }
     
+    public void processQueue(){
+    	for(GameTurn gt : actionQueue){
+    		switch(gt.act){
+    		case walk:
+    			break;
+    		case shoot:
+    			break;
+    		}
+    	}
+    }
+    
     public ArrayList<Troop> findTroopsInRange(double x, double y){
     	ArrayList<Troop> troops = new ArrayList<Troop>();
     	for(Troop t : player1){
