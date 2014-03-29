@@ -14,7 +14,7 @@ public class Wall {
         return this.x;
     }
 
-    publiuc int getY() {
+    public int getY() {
         return this.y;
     }
 
