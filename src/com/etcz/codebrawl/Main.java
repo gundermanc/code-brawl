@@ -27,6 +27,7 @@ public class Main extends JPanel{
                 troops[i][j] = new Troop(Math.random()*environment.getWidth(),Math.random()*environment.getHeight());
             }
         }
+        GUI window = new GUI(troops);
         while(true){
         	int numEliminated = 0;
         	//loop though troops
@@ -37,6 +38,7 @@ public class Main extends JPanel{
         				eliminated = false;
         				//TODO call player i's tick function
             			//tick(t);
+                                //window.pack();
         			}
         		}
         		if(eliminated){
@@ -49,6 +51,7 @@ public class Main extends JPanel{
         	//process queue
         	processQueue();
         }
+        
     }
 
     
