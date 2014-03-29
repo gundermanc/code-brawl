@@ -2,16 +2,10 @@ package com.etcz.codebrawl;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-<<<<<<< HEAD
-
-public class Main {
-=======
 import java.awt.*;
 import javax.swing.*;
-import src.com.etcz.codebrawl.*;
 
-public class Main extends JPanel, JFrame {
->>>>>>> 18b6ae504ce0f3a1448b398d9923068f8de9c8aa
+public class Main extends JPanel, JFrame{
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
     private int max_troop;
@@ -21,17 +15,10 @@ public class Main extends JPanel, JFrame {
 	}
     
     public Main(int numberOfPlayers) {
-<<<<<<< HEAD
-	this.actionQueue = new LinkedList<GameTurn>();
-        players = new Player[numberOfPlayers];
-        environment = new EnvironmentInfo(numberOfPlayers,numberOfPlayers);
-        for (int i = 0, len = players.length; i < len; i++)
-=======
         this.actionQueue = new LinkedList<GameTurn>();
         this.players = new Player[numberOfPlayers];
-        this.environment = new EnvironmentInfo();
-        for (int i = 0; i < players.length; i++)
->>>>>>> 18b6ae504ce0f3a1448b398d9923068f8de9c8aa
+        this.environment = new EnvironmentInfo(numberOfPlayers);
+        for (int i = 0, len=players.length; i < len; i++)
         {
             Troop[] t = new Troop[max_troop];
             for (int j = 0; i<max_troop; i++)
@@ -87,7 +74,7 @@ public class Main extends JPanel, JFrame {
     	ArrayList<Troop> troops = new ArrayList<Troop>();
     	for(int i = 0; i < players.length; i++)
         {
-            for(Troop t : players[i].getTroop()){
+            for(Troop t : players[i].getTroops()){
     		if(inRange(t.x,t.y,x,y)){
     			troops.add(t);
     		}

@@ -6,7 +6,7 @@ public class EnvironmentInfo
     private final double HEIGHT = 300.0;
     private Wall[] wall;
 
-    public EnvironmentInfo()
+    public EnvironmentInfo(int numPlayers)
     {
     }
     
