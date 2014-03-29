@@ -6,6 +6,10 @@ public class Troop {
 	private int health;
 	private static int radius;
 	
+	public Troop(float x, float y){
+		
+	}
+	
 	public float getX(){
 		return x;
 	}
@@ -13,11 +17,22 @@ public class Troop {
 		return y;
 	}
 	
-	public final void walk(){
-		//creates instance of gameturn
+	/**
+	 * @return A list of objects in the radius of the troop.
+	 */
+	public List<Objects> look(){
+		
+	}
+
+	public final void walk(float x, float y){
+		Main.QueueAction(new GameTurn(){
+			
+		});
 	}
 	
-	public final void shoot(){
-		//creates instance of gameturn
+	public final void shoot(float x, float y){
+		Main.QueueAction(new GameTurn(){
+			
+		});
 	}
 }
