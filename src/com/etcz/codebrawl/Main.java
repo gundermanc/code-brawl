@@ -40,7 +40,7 @@ public class Main extends JPanel{
         }
         GUI window = new GUI(troops,environment);
         JFrame frame = new JFrame("Code BRAWL!!");
-        frame.setSize((int)environment.getWidth(),(int)environment.getHeight());
+        frame.setSize((int)environment.getWidth()+20,(int)environment.getHeight()+20);//TODO added 50
         frame.setVisible(true);
         frame.getContentPane().add(window);
         while(true){
@@ -64,7 +64,7 @@ public class Main extends JPanel{
                 window.validate();
                 window.repaint();
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                 } catch(InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }
@@ -77,23 +77,26 @@ public class Main extends JPanel{
 
     
     public void QueueAction(GameTurn action) {
+    	//Troop lastTroop = actionQueue.getLast()
         this.actionQueue.offerLast(action);
     }
     
     public void processQueue(){
             GameTurn gt;
             while((gt = actionQueue.poll())!=null){
+            	gt.troop.lastAction = gt.act;
+            	gt.troop.lastTarget = null;
                     switch(gt.act){
                     case walk:
-                            double finalX = gt.troop.x + 10*gt.x;
-                            double finalY = gt.troop.y + 10*gt.y;
+                            double finalX = gt.troop.x + 5*gt.x;
+                            double finalY = gt.troop.y + 5*gt.y;
                             //prevent bumping into edge of screen
                             if(finalX < 0)
                                     finalX = 0;
                             else if(finalX > environment.getWidth())
                                     finalX = environment.getWidth()-Troop.WIDTH;
-                            if(finalX < 0)
-                                    finalX = 0;
+                            if(finalY < 0)
+                                    finalY = 0;
                             else if(finalY > environment.getHeight())
                                     finalY = environment.getHeight()-Troop.WIDTH;
                             //prevent bumping into other troops
@@ -101,6 +104,7 @@ public class Main extends JPanel{
                                     return;
                             }
                             //change pos
+                            System.out.println(finalY);//TODO remove
                             gt.troop.setPos(finalX, finalY);
                             break;
                     case shoot:
@@ -110,6 +114,7 @@ public class Main extends JPanel{
                                     double angle = Math.atan((t.y-gt.troop.y)/(t.x-gt.troop.x));
                                     if(Math.abs(angle-fireAngle)< Math.PI/4){
                                             t.setHealth(t.health--);
+                                            gt.troop.lastTarget = t;
                                     }
                             }
                             break;
@@ -150,6 +155,8 @@ public class Main extends JPanel{
             private int health = 3;
             private final static int RADIUS = 10;
             private final static double WIDTH = 5;
+            protected actions lastAction = actions.walk;
+            protected Troop lastTarget = null;
             
             public Troop(double x, double y){
                     this.x = x;
