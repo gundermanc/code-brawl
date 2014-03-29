@@ -6,6 +6,9 @@ import java.awt.Color;
 import javax.swing.*;
 import java.awt.Graphics;
 
+import src.com.etcz.codebrawl.EnvironmentInfo;
+import src.com.etcz.codebrawl.Main;
+
 public class GUI extends JPanel
 {
     Main.Troop[][] troops;
@@ -30,6 +33,7 @@ public class GUI extends JPanel
             g.setColor(new Color(((int)(Math.random()*255)),((int)Math.random()*255),((int)Math.random()*255)));
 =======
     {    
+        super.paintComponent(g);
         for (int i = 0; i < troops.length; i++)
         {
             g.setColor(troopsColor[i]);
@@ -44,10 +48,14 @@ public class GUI extends JPanel
     public void repaint(Graphics g)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         for (int i = 0; i < troops.length; i++)
         {
             g.setColor(new Color(((int)(Math.random()*255)),((int)Math.random()*255),((int)Math.random()*255)));
 =======
+=======
+        super.paintComponent(g);
+>>>>>>> 4c4fa680b5a3764dac26fb847c29c5babc5e03ef
     	System.out.print("reprinting");//TODO remove
         for (int i = 0; i < troops.length; i++)
         {
@@ -60,6 +68,7 @@ public class GUI extends JPanel
     }
     public void paintComponent(Graphics g)
     {
+        super.paintComponent(g);
         for (int i = 0; i < troops.length; i++)
         {
             g.setColor(troopsColor[i]);

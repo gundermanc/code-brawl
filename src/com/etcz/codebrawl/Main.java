@@ -1,10 +1,10 @@
-package com.etcz.codebrawl;
-
+package src.com.etcz.codebrawl;
+import src.com.etcz.codebrawl.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.awt.*;
 import javax.swing.*;
-import com.etcz.codebrawl.*;
+
 
 public class Main extends JPanel{
     private LinkedList<GameTurn> actionQueue;
@@ -66,6 +66,7 @@ public class Main extends JPanel{
                 }
                 //process queue
                 processQueue();
+            window.repaint();
         }
         
     }
@@ -80,8 +81,8 @@ public class Main extends JPanel{
             while((gt = actionQueue.poll())!=null){
                     switch(gt.act){
                     case walk:
-                            double finalX = gt.troop.x + gt.x;
-                            double finalY = gt.troop.y + gt.y;
+                            double finalX = gt.troop.x + 10*gt.x;
+                            double finalY = gt.troop.y + 10*gt.y;
                             //prevent bumping into edge of screen
                             if(finalX < 0)
                                     finalX = 0;
