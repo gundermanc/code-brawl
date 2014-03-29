@@ -88,6 +88,7 @@ public class Main extends JPanel{
             	gt.troop.lastTarget = null;
                     switch(gt.act){
                     case walk:
+                    	
                             double finalX = gt.troop.x + 5*gt.x;
                             double finalY = gt.troop.y + 5*gt.y;
                             //prevent bumping into edge of screen
@@ -109,10 +110,10 @@ public class Main extends JPanel{
                     case shoot:
                             ArrayList<Troop> troopsInRange = findTroopsInRange(gt.troop.x,gt.troop.y,Troop.RADIUS);
                             for(Troop t : troopsInRange){
-                                    if(t.equals(gt.target)){
+                                    if(t.equals(gt.target) && t.health>0){
                                     	gt.troop.lastTarget = t;
                                     	t.health--;
-                                    	System.out.println("shooting");
+                                    	System.out.println(t.health);
                                     }
                             }
                             break;
