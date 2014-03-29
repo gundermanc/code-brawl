@@ -25,7 +25,7 @@ public class GUI extends JPanel
         }
     }
     
-    public void paint(Graphics g)
+    public void paint(Graphics g, Main.actions a)
     {    
         super.paintComponent(g);
         for (int i = 0; i < troops.length; i++)
@@ -33,20 +33,35 @@ public class GUI extends JPanel
             g.setColor(troopsColor[i]);
             for (Main.Troop t : troops[i])
             {
-                g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+            	g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+                switch(t.lastAction){
+                case walk:                
+                    break;
+                case shoot:
+                    g.drawLine((int)t.getX(),(int)t.getY(),(int)t.lastTarget.getX(),(int)t.lastTarget.getY());
+                    break;
+                }
             }
         }
     }
     
     public void repaint(Graphics g)
     {
-    	System.out.print("reprinting");//TODO remove
+        super.paintComponent(g);
+            System.out.print("reprinting");//TODO remove
         for (int i = 0; i < troops.length; i++)
         {
             g.setColor(troopsColor[i]);
             for (Main.Troop t : troops[i])
             {
-                g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+            	g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+                switch(t.lastAction){
+                case walk:                
+                    break;
+                case shoot:
+                    g.drawLine((int)t.getX(),(int)t.getY(),(int)t.lastTarget.getX(),(int)t.lastTarget.getY());
+                    break;
+                }
             }
         }
     }
@@ -58,7 +73,14 @@ public class GUI extends JPanel
             g.setColor(troopsColor[i]);
             for (Main.Troop t : troops[i])
             {
-                g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+            	g.fillArc((int)t.getX(),(int)t.getY(),10,10,0,360);
+                switch(t.lastAction){
+                case walk:                
+                    break;
+                case shoot:
+                    g.drawLine((int)t.getX(),(int)t.getY(),(int)t.lastTarget.getX(),(int)t.lastTarget.getY());
+                    break;
+                }
             }
         }
     }

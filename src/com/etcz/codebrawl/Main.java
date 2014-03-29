@@ -104,17 +104,15 @@ public class Main extends JPanel{
                                     return;
                             }
                             //change pos
-                            System.out.println(finalY);//TODO remove
                             gt.troop.setPos(finalX, finalY);
                             break;
                     case shoot:
-                            double fireAngle = Math.atan(gt.y/gt.x);
                             ArrayList<Troop> troopsInRange = findTroopsInRange(gt.troop.x,gt.troop.y,Troop.RADIUS);
                             for(Troop t : troopsInRange){
-                                    double angle = Math.atan((t.y-gt.troop.y)/(t.x-gt.troop.x));
-                                    if(Math.abs(angle-fireAngle)< Math.PI/4){
-                                            t.setHealth(t.health--);
-                                            gt.troop.lastTarget = t;
+                                    if(t.equals(gt.target)){
+                                    	gt.troop.lastTarget = t;
+                                    	t.health--;
+                                    	System.out.println("shooting");
                                     }
                             }
                             break;
@@ -140,7 +138,7 @@ public class Main extends JPanel{
     }
     
     public double dist(double x1, double y1, double x2, double y2){
-            return Math.pow(x1-x2, 2) + Math.pow(71-y2, 2);
+            return Math.sqrt( Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2) );
     }
 
     public static void main(String[] args) throws Exception{
@@ -153,7 +151,7 @@ public class Main extends JPanel{
             private double x;
             private double y;
             private int health = 3;
-            private final static int RADIUS = 10;
+            private final static int RADIUS = 20;
             private final static double WIDTH = 5;
             protected actions lastAction = actions.walk;
             protected Troop lastTarget = null;
@@ -184,8 +182,8 @@ public class Main extends JPanel{
                     QueueAction(new GameTurn(actions.walk,this,x,y));
             }
             
-            public final void shoot(double x, double y){
-                    QueueAction(new GameTurn(actions.shoot,this));
+            public final void shoot(Troop t){
+                    QueueAction(new GameTurn(actions.shoot,this,t));
             }
             
             private void setPos(double x, double y){
