@@ -2,15 +2,13 @@ package src.com.etcz.codebrawl;
 
 public class EnvironmentInfo
 {
-    public EnvironmentInfo(double width, double height)
-    {
-        this.width = width;
-        this.height = height;
-    }
-    
-    private static double width;
-    private static double height;
+    private final double WIDTH = 500.0;
+    private final double HEIGHT = 300.0;
     private Wall[] wall;
+
+    public EnvironmentInfo()
+    {
+    }
     
     public void setWalls()
     {   
@@ -22,12 +20,12 @@ public class EnvironmentInfo
     
     public double getWidth()
     {
-        return width;
+        return this.WIDTH;
     }
     
     public double getHeight()
     {
-        return height;
+        return this.HEIGHT;
     }
     
 }
