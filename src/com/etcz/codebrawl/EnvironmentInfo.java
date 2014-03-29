@@ -10,7 +10,7 @@ public class EnvironmentInfo
     private static double width;
     private static double height;
     private static final int MAX_TROOPS;
-    private Walls[] wall;
+    private Wall[] wall;
     private Player[] players;
     
     public void setWalls()

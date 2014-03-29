@@ -1,23 +1,19 @@
-package com.etcz.codebrawl;
+package src.com.etcz.codebrawl;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import com.etcz.codebrawl.*;
+
+import src.com.etcz.codebrawl.*;
 
 public class Main {
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
-    private Troop[] player1;
-    private Troop[] player2;
 	public enum actions{
 		walk, shoot
 	}
     
     public Main() {
 	this.actionQueue = new LinkedList<GameTurn>();
-        for (int i = 0; i < player1.length; i++)
-        {
-        }
     }
 
     public void QueueAction(GameTurn action) {
