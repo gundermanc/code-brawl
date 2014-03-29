@@ -8,6 +8,7 @@ import src.com.etcz.codebrawl.*;
 public class Main {
     private LinkedList<GameTurn> actionQueue;
     private EnvironmentInfo environment;
+    private int max_troop;
     private Player[] players;
 	public enum actions{
 		walk, shoot
@@ -16,8 +17,19 @@ public class Main {
     public Main(int numberOfPlayers) {
 	this.actionQueue = new LinkedList<GameTurn>();
         players = new Player[numberOfPlayers];
+        environment = new EnvironmentInfo(numberOfPlayers,numberOfPlayers);
+        for (int i = 0; i < players.length; i++)
+        {
+            Troop[] t = new Troop[max_troop];
+            for (Troop t1 : t)
+            {
+                t1 = new Troop(Math.random()*environment.getWidth(),Math.random()*environment.getHeight());
+            }
+            players[i] = new Player(t);
+        }
     }
 
+    
     public void QueueAction(GameTurn action) {
 	this.actionQueue.offerLast(action);
     }

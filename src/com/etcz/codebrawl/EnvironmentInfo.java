@@ -2,31 +2,32 @@ package src.com.etcz.codebrawl;
 
 public class EnvironmentInfo
 {
-    public EnvironmentInfo()
+    public EnvironmentInfo(double width, double height)
     {
-        super();
+        this.width = width;
+        this.height = height;
     }
     
     private static double width;
     private static double height;
-    private static final int MAX_TROOPS;
     private Wall[] wall;
-    private Player[] players;
     
     public void setWalls()
     {   
     }
     
-    private void setTroops()
-    {
-    }
-    
-    public void setPlayers()
-    {
-        
-    }
     public void update(GameTurn turn)
     {   
+    }
+    
+    public double getWidth()
+    {
+        return width;
+    }
+    
+    public double getHeight()
+    {
+        return height;
     }
     
 }
