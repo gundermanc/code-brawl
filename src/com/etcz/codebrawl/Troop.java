@@ -26,7 +26,7 @@ public class Troop {
 
 	public final void walk(float x, float y){
 		Main.QueueAction(new GameTurn(){
-			
+			//holds 
 		});
 	}
 	
