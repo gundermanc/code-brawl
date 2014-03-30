@@ -3,8 +3,8 @@
  * 	timer for each method?
  * importing functions
  */
-package com.etcz.codebrawl;
-import com.etcz.codebrawl.*;
+package src.com.etcz.codebrawl;
+import src.com.etcz.codebrawl.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.awt.*;
@@ -32,7 +32,7 @@ public class Main extends JPanel{
         players = new Player[numPlayers];
         for (int i = 1; i < args.length; i++)
         {
-            Class temp = Class.forName("com.etcz.codebrawl."+args[i]);
+            Class temp = Class.forName("src.com.etcz.codebrawl."+args[i]);
             players[i-1] = (Player)temp.newInstance();
         }
         

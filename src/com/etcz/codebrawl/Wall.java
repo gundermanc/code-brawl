@@ -1,4 +1,4 @@
-package com.etcz.codebrawl;
+package src.com.etcz.codebrawl;
 public class Wall {
 
     private int x;

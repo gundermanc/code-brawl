@@ -1,13 +1,11 @@
-package com.etcz.codebrawl;
-import com.etcz.codebrawl.*;
+package src.com.etcz.codebrawl;
+import src.com.etcz.codebrawl.*;
 
 import java.awt.Color;
 
 import javax.swing.*;
 import java.awt.Graphics;
 
-import com.etcz.codebrawl.EnvironmentInfo;
-import com.etcz.codebrawl.Main;
 
 public class GUI extends JPanel
 {

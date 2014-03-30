@@ -1,11 +1,11 @@
-package com.etcz.codebrawl;
-import com.etcz.codebrawl.*;
+package src.com.etcz.codebrawl;
+import src.com.etcz.codebrawl.*;
 
 public class EnvironmentInfo
 {
     private final double WIDTH = 1000.0;
     private final double HEIGHT = 600.0;
-    private Wall[] wall;
+    //private Wall[] wall;
 
     public PowerUp[] powerUps;
 

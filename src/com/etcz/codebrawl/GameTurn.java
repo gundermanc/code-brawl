@@ -1,5 +1,5 @@
-package com.etcz.codebrawl;
-import com.etcz.codebrawl.*;
+package src.com.etcz.codebrawl;
+import src.com.etcz.codebrawl.*;
 public class GameTurn {
 	
 	public final Main.actions act;

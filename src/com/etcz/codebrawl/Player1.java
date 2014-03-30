@@ -1,7 +1,7 @@
-package com.etcz.codebrawl;
-
+package src.com.etcz.codebrawl;
+import src.com.etcz.codebrawl.Main.Troop;
 import java.util.ArrayList;
-import com.etcz.codebrawl.Main.Troop;
+
 
 public class Player1 extends Player{
 
